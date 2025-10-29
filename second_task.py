@@ -8,7 +8,7 @@ class SlidingWindowRateLimiter:
     def __init__(self, window_size: int = 10, max_requests: int = 1):
         self.window_size = window_size
         self.max_requests = max_requests
-        self.user_requests = {}
+        self.user_requests: Dict[str, deque] = {}
 
     def _cleanup_window(self, user_id: str, current_time: float) -> None:
         if user_id not in self.user_requests:
